@@ -1,4 +1,7 @@
 class WelcomeController < ApplicationController
+  require 'httparty'
+  require 'uri'
+  require 'polylines'
   def index
   end
 
@@ -7,14 +10,16 @@ class WelcomeController < ApplicationController
 
 	def strava_auth
 	    code = params["code"];
-	    response_temp = HTTParty.post("https://www.strava.com/oauth/token", body: {
-	    client_id: ENV['STRAVA_ID'],
-	    client_secret: ENV['STRAVA_KEY'] ,
-	    code: code
+	    response_temp = HTTParty.post("https://www.strava.com/oauth/token", :body => {
+	    :client_id => ENV['STRAVA_ID'],
+	    :client_secret => ENV['STRAVA_KEY'],
+	    :code => code
 	    }.to_json,
 	    headers: {'Content-Type'=>'application/json'})
 
-	    id=response_temp.parsed_response["athlete"]["id"]
+	    p response_temp
+
+	    id = response_temp.parsed_response["athlete"]["id"]
 	    user = User.find_by strava_id: id
 
 	    if !user

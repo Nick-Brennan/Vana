@@ -40,6 +40,9 @@ gem 'polylines'
 #angular
 gem 'angularjs-rails'
 
+#dotenv
+gem 'dotenv-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
