@@ -69,13 +69,13 @@
             </tr>
         </theader>
         <tr>
-            <td ><a ng-href='{{plan.monUrl}}' target="_blank">{{plan.monData | number:2}}</a></td>
-            <td ><a ng-href='{{plan.tuesUrl}}' target="_blank">{{plan.tuesData | number:2}}</a></td>
-            <td ><a ng-href='{{plan.wedUrl}}' target="_blank">{{plan.wedData | number:2}}</a></td>
-            <td ><a ng-href='{{plan.thursUrl}}' target="_blank">{{plan.thursData | number:2}}</a></td>
-            <td ><a ng-href='{{plan.friUrl}}' target="_blank">{{plan.friData | number:2}}</a></td>
-            <td ><a ng-href='{{plan.satUrl}}' target="_blank">{{plan.satData | number:2}}</a></td>
-            <td ><a ng-href='{{plan.sunUrl}}' target="_blank">{{plan.sunData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank">{{plan.monData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank">{{plan.tuesData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank">{{plan.wedData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank">{{plan.thursData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank">{{plan.friData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank">{{plan.satData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank">{{plan.sunData | number:2}}</a></td>
         </tr>
         <tr>                 
             <td><a ng-href='{{plan.monUrl}}' target="_blank"><img ng-src='{{plan.monday && (plan.monMap || "runDay.png") || "chillDay.jpg"}}' class="day"  onerror="this.src='runningSplash.jpg'"></a></td>
