@@ -20,8 +20,6 @@ class WelcomeController < ApplicationController
 	    }.to_json,
 	    headers: {'Content-Type'=>'application/json'})
 
-	    p response_temp
-
 	    id = response_temp.parsed_response["athlete"]["id"]
 	    user = User.find_by strava_id: id
 
