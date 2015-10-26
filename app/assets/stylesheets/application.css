@@ -13,3 +13,44 @@
  *= require_tree .
  *= require_self
  */
+#title{
+	font-size: 4.5em;
+	margin-left: 50px;
+}
+
+ img{
+ 	display: inline-block;
+ 	vertical-align: top;
+ }
+
+ #profile_pic{
+ 	height: 100px;
+ 	margin-top: 15px;
+ 	margin-bottom: 5px;
+ 	border-radius: 20px;
+ }
+
+ .day{
+ 	height: 125px;
+ 	width: 125px;
+ }
+
+ #boxes{
+ 	text-align: center;
+ }
+
+ th{
+ 	text-align: center;
+ 	margin: auto;
+ }
+
+ .nav{
+ 	background-color: rgba(151, 144, 144, 0.54);
+ }
+
+
+ /*.checkbox-inline{
+ 	padding-left: 20px;
+ 	padding-right: 20px;
+ 	margin-left: 20px;
+ }*/

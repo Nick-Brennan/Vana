@@ -1,2 +1,234 @@
-<h1>Welcome#home</h1>
-<p>Find me in app/views/welcome/home.html.erb</p>
+
+	<div class="row nav">
+		<div class="col-sm-10">
+			<h1 id="title">ÖVA</h1>
+			<small class="pull-right">Welcome, <%=@user['firstname']%></small> 
+		</div>
+		<div class="col-sm-2">
+			<%=image_tag(@user['profile_img'], id: 'profile_pic')%>
+		</div>
+	</div>
+
+<div class="container"ng-app="coachApp">
+	<br>
+    <div ng-controller="indexCtrl">
+        <label>Weekly Mileage</label>
+        <input ng-model='plan.miles' type="number"><br><br>
+        <hr>
+        <div class="row">
+            <div class="col-md-2"></div>
+                <div id="boxes" class="col-md-8">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.monday" value="1" class="checkbox">
+                        Mon&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.tuesday" value="1" class="checkbox">
+                        Tues&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.wednesday" value="1" class="checkbox">
+                        Wed&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.thursday" value="1" class="checkbox">
+                        Thurs&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.friday" value="1" class="checkbox">
+                        Fri&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.saturday" value="1" class="checkbox">
+                        Sat&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.sunday" value="1" class="checkbox">
+                        Sun&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <hr>
+            <p></p>
+            <p>Average daily mileage: <span ng-if="plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday > 0">{{plan.miles / (plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday) | number:2}}</span></p>
+    
+            <a ng-click="grabRun()" class="btn btn-default btn-sm">Get Plan</a><br><br>
+
+   
+    <table class="table">
+        <theader>
+            <tr id="days">
+                <th style="text-align: center;">Monday</th>
+                <th style="text-align: center;">Tuesday</th>
+                <th style="text-align: center;">Wednesday</th>
+                <th style="text-align: center;">Thursday</th>
+                <th style="text-align: center;">Friday</th>
+                <th style="text-align: center;">Saturday</th>
+                <th style="text-align: center;">Sunday</th>
+            </tr>
+        </theader>
+        <tr>
+            <td ><a ng-href='{{plan.monUrl}}' target="_blank">{{plan.monData | number:2}}</a></td>
+            <td ><a ng-href='{{plan.tuesUrl}}' target="_blank">{{plan.tuesData | number:2}}</a></td>
+            <td ><a ng-href='{{plan.wedsUrl}}' target="_blank">{{plan.wedData | number:2}}</a></td>
+            <td ><a ng-href='{{plan.thursUrl}}' target="_blank">{{plan.thursData | number:2}}</a></td>
+            <td ><a ng-href='{{plan.friUrl}}' target="_blank">{{plan.friData | number:2}}</a></td>
+            <td ><a ng-href='{{plan.satUrl}}' target="_blank">{{plan.satData | number:2}}</a></td>
+            <td ><a ng-href='{{plan.sunUrl}}' target="_blank">{{plan.sunData | number:2}}</a></td>
+        </tr>
+        <tr>                 
+            <td><img ng-src='{{plan.monday && (plan.monMap || "runDay.png") || "chillDay.jpg"}}' class="day"></td>
+            <td><img ng-src='{{plan.tuesday && (plan.tuesMap || "runDay.png") || "chillDay.jpg"}}' class="day"></td>
+            <td><img ng-src="{{plan.wednesday && (plan.wedsMap || 'runDay.png') || 'chillDay.jpg'}}" class="day"></td>
+            <td><img ng-src="{{plan.thursday && (plan.thursMap || 'runDay.png') || 'chillDay.jpg'}}" class="day"></td>
+            <td><img ng-src="{{plan.friday && (plan.friMap || 'runDay.png') || 'chillDay.jpg'}}" class="day"></td>
+            <td><img ng-src="{{plan.saturday && (plan.satMap || 'runDay.png') || 'chillDay.jpg'}}" class="day"></td>
+            <td><img ng-src="{{plan.sunday && (plan.sunMap || 'runDay.png') || 'chillDay.jpg'}}" class="day"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <hr>
+    </div>
+
+</div>
+<script>
+	var app = angular.module('coachApp', ['ngRoute', 'ngResource']);
+
+app.controller('indexCtrl', ['$scope', '$sce', function($scope, $sce){
+    
+    $scope.test = "This is a sanity check";
+    console.log($scope.test);
+    $scope.plan = {}
+    $scope.plan.miles = 0;
+    $scope.plan.days = 0;
+    $scope.plan.total = 0;
+    $scope.plan.runs = <%=@user_runs.to_json.html_safe%>;
+    console.log('runs: ')
+    console.log($scope.plan.runs)
+    console.log("***********************************************")
+//    $scope.plan.monUrl = $sce.trustAsResourceUrl('https://www.runtastic.com/en/routes#/search?nw_latitude=37.96763381521261&nw_longitude=-122.57988285583491&se_latitude=37.930408444176386&se_longitude=-122.51482319396968&zoom_level=14&clat=37.94902348734078&clng=-122.54735302490229&distance_min=0&distance_max=482803&elevation_gain_min=0&elevation_gain_max=762&sport_type_id=1&page=1');
+//    $scope.trustSrc = function(src) {
+//        return $sce.trustAsResourceUrl(src);
+//    }
+	$scope.grabRun = function(){
+		console.log($scope.plan.miles);
+		$scope.plan.runs.forEach(function(run){
+
+                if(run.distance * 0.000621371 >= $scope.plan.miles - 0.5 && run.distance * 0.000621371 <= $scope.plan.miles + 0.5 ){
+                	console.log(run.distance);
+                	console.log(run.name);
+                }
+            });
+	};
+   
+    $scope.calcTotal = function(){
+        
+        var findRun = function(dist){
+            var res = [];
+            $scope.plan.runs.forEach(function(run){
+                if(run.distance >= (dist - 0.5) && run.distance <= (dist + 0.5)){
+                    res.push(run);
+                }
+            });
+            return res;
+        };
+        
+        
+        $scope.plan.days = (($scope.plan.monday ? 1 : 0)
+                                                      + ($scope.plan.tuesday ? 1 : 0)
+                                                      + ($scope.plan.wednesday ? 1 : 0)
+                                                      + ($scope.plan.thursday ? 1 : 0)
+                                                      + ($scope.plan.friday ? 1 : 0)
+                                                      + ($scope.plan.saturday ? 1 : 0)
+                                                      + ($scope.plan.sunday ? 1 : 0));
+        
+        if($scope.plan.saturday && $scope.plan.sunday && ($scope.plan.days > 3)){
+            $scope.plan.satData = $scope.plan.miles * .30;
+            $scope.plan.sunData = $scope.plan.miles * .25;
+            weekMiles = ($scope.plan.miles * .45) / ($scope.plan.days - 2);
+            $scope.plan.monData = $scope.plan.monday ? weekMiles : 0;
+            $scope.plan.tuesData = $scope.plan.tuesday ? weekMiles : 0;
+            $scope.plan.wedData = $scope.plan.wednesday ? weekMiles : 0;
+            $scope.plan.thursData = $scope.plan.thursday ? weekMiles : 0;
+            $scope.plan.friData = $scope.plan.friday ? weekMiles : 0;
+            
+            $scope.plan.satMap = findRun($scope.plan.satData)[0].map;
+            $scope.plan.satUrl = findRun($scope.plan.satData)[0].url;
+            $scope.plan.sunMap = findRun($scope.plan.sunData)[0].map;
+            $scope.plan.sunUrl = findRun($scope.plan.sunData)[0].url;
+            $scope.plan.monMap = $scope.plan.monday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.monUrl = $scope.plan.monday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.tuesMap = $scope.plan.tuesday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.tuesUrl = $scope.plan.tuesday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.wedsMap = $scope.plan.wednesday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.wedsUrl = $scope.plan.wednesday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.thursMap = $scope.plan.thursday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.thursUrl = $scope.plan.thursday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.friMap = $scope.plan.friday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.friUrl = $scope.plan.friday ? findRun(weekMiles)[0].url : null;
+            
+        }else if(($scope.plan.saturday || $scope.plan.sunday) && ($scope.plan.days > 3)){
+            weekendMiles = $scope.plan.miles * .30;
+            weekMiles = ($scope.plan.miles * .7) / ($scope.plan.days - 1);
+            $scope.plan.monData = $scope.plan.monday ? weekMiles : 0;
+            $scope.plan.tuesData = $scope.plan.tuesday ? weekMiles : 0;
+            $scope.plan.wedData = $scope.plan.wednesday ? weekMiles : 0;
+            $scope.plan.thursData = $scope.plan.thursday ? weekMiles : 0;
+            $scope.plan.friData = $scope.plan.friday ? weekMiles : 0;
+            $scope.plan.satData = $scope.plan.saturday ? weekendMiles : 0;
+            $scope.plan.sunData = $scope.plan.sunday ? weekendMiles : 0;
+            
+            $scope.plan.satMap = $scope.plan.saturday ? findRun(weekendMiles)[0].map : null;
+            $scope.plan.satUrl = $scope.plan.saturday ? findRun(weekendMiles)[0].url : null;
+            $scope.plan.sunMap = $scope.plan.sunday ? findRun(weekendMiles)[0].map : null;
+            $scope.plan.sunUrl = $scope.plan.sunday ? findRun(weekendMiles)[0].url : null;
+            $scope.plan.monMap = $scope.plan.monday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.monUrl = $scope.plan.monday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.tuesMap = $scope.plan.tuesday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.tuesUrl = $scope.plan.tuesday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.wedsMap = $scope.plan.wednesday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.wedsUrl = $scope.plan.wednesday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.thursMap = $scope.plan.thursday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.thursUrl = $scope.plan.thursday ? findRun(weekMiles)[0].url : null;
+            $scope.plan.friMap = $scope.plan.friday ? findRun(weekMiles)[0].map : null;
+            $scope.plan.friUrl = $scope.plan.friday ? findRun(weekMiles)[0].url : null;
+        }else{
+            $scope.plan.total =  $scope.plan.miles / $scope.plan.days;
+            $scope.plan.monData = $scope.plan.monday ? $scope.plan.total : 0;
+            $scope.plan.tuesData = $scope.plan.tuesday ? $scope.plan.total : 0;
+            $scope.plan.wedData = $scope.plan.wednesday ? $scope.plan.total : 0;
+            $scope.plan.thursData = $scope.plan.thursday ? $scope.plan.total : 0;
+            $scope.plan.friData = $scope.plan.friday ? $scope.plan.total : 0;
+            $scope.plan.satData = $scope.plan.saturday ? $scope.plan.total : 0;
+            $scope.plan.sunData = $scope.plan.sunday ? $scope.plan.total : 0;
+            
+            $scope.plan.satMap = $scope.plan.saturday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.satUrl = $scope.plan.saturday ? findRun($scope.plan.total)[0].url : null;
+            $scope.plan.sunMap = $scope.plan.sunday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.sunUrl = $scope.plan.sunday ? findRun($scope.plan.total)[0].url : null;
+            $scope.plan.monMap = $scope.plan.monday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.monUrl = $scope.plan.monday ? findRun($scope.plan.total)[0].url : null;
+            $scope.plan.tuesMap = $scope.plan.tuesday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.tuesUrl = $scope.plan.tuesday ? findRun($scope.plan.total)[0].url : null;
+            $scope.plan.wedsMap = $scope.plan.wednesday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.wedsUrl = $scope.plan.wednesday ? findRun($scope.plan.total)[0].url : null;
+            $scope.plan.thursMap = $scope.plan.thursday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.thursUrl = $scope.plan.thursday ? findRun($scope.plan.total)[0].url : null;
+            $scope.plan.friMap = $scope.plan.friday ? findRun($scope.plan.total)[0].map : null;
+            $scope.plan.friUrl = $scope.plan.friday ? findRun($scope.plan.total)[0].url : null;
+        }
+        console.log($scope.plan)
+        
+    };
+}]);
+
+</script>
