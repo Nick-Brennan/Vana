@@ -12,11 +12,11 @@ class WelcomeController < ApplicationController
   end
 
 	def strava_auth
-	    code = params["code"];
+	    code = params["code"]
 	    response_temp = HTTParty.post("https://www.strava.com/oauth/token", :body => {
-	    :client_id => ENV['STRAVA_ID'],
-	    :client_secret => ENV['STRAVA_KEY'],
-	    :code => code
+		    :client_id => ENV['STRAVA_ID'],
+		    :client_secret => ENV['STRAVA_KEY'],
+		    :code => code
 	    }.to_json,
 	    headers: {'Content-Type'=>'application/json'})
 
