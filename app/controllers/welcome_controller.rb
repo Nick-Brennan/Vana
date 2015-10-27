@@ -5,6 +5,11 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  def logout
+  	session[:user_id] = nil
+  	redirect_to '/'
+  end
+
   def home
   	@user = current_user
   	client = Strava::Api::V3::Client.new(:access_token => @user.token)
@@ -12,15 +17,13 @@ class WelcomeController < ApplicationController
   end
 
 	def strava_auth
-	    code = params["code"];
+	    code = params["code"]
 	    response_temp = HTTParty.post("https://www.strava.com/oauth/token", :body => {
-	    :client_id => ENV['STRAVA_ID'],
-	    :client_secret => ENV['STRAVA_KEY'],
-	    :code => code
+		    :client_id => ENV['STRAVA_ID'],
+		    :client_secret => ENV['STRAVA_KEY'],
+		    :code => code
 	    }.to_json,
 	    headers: {'Content-Type'=>'application/json'})
-
-	    p response_temp
 
 	    id = response_temp.parsed_response["athlete"]["id"]
 	    user = User.find_by strava_id: id
