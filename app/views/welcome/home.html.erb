@@ -12,7 +12,10 @@
 		        <button class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 		            <img alt="menu" src="menu-3-256.png" id="burger" class="pull-right">
 		        </button>
-		        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+		        <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" id="indexDrop">
+		        	<li><a href="">update best efforts</a></li>
+		        	<li><a href="">save plan</a></li>
+		        	<li><a href="">view plans</a></li>
 		            <li><%= button_to "Logout", logout_path, method: "get", class: "btn btn-danger btn-xs"%></li>
 		        </ul>
     		</div>  
