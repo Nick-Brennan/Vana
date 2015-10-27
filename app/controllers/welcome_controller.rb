@@ -5,6 +5,11 @@ class WelcomeController < ApplicationController
   def index
   end
 
+  def logout
+  	session[:user_id] = nil
+  	redirect_to '/'
+  end
+
   def home
   	@user = current_user
   	client = Strava::Api::V3::Client.new(:access_token => @user.token)

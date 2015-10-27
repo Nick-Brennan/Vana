@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require bootstrap
  *= require_self
  */
 .title{
@@ -56,6 +57,14 @@
 
  #link_to_strava{
  	margin-top: 18%;
+ }
+
+ #dropdownMenu1{
+ 	border: none;
+ }
+
+ .btn-danger{
+ 	margin: 10px;
  }
 
 
