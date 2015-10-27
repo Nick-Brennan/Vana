@@ -14,8 +14,11 @@
  *= require bootstrap
  *= require_self
  */
+
 .title{
+	color: black;
 	font-size: 4.5em;
+	margin-top: 45px;
 	margin-left: 50px;
 }
 
@@ -27,7 +30,6 @@
  #profile_pic{
  	height: 100px;
  	margin-top: 15px;
- 	margin-bottom: 5px;
  	border-radius: 20px;
  }
 
@@ -52,7 +54,7 @@
  #burger{
  	height:30px;
  	vertical-align: bottom;
- 	margin-top: 70px;
+ 	margin-top: 80px;
  }
 
  #link_to_strava{
@@ -67,6 +69,18 @@
  	margin: 10px;
  }
 
+ #indexDrop{
+ 	margin-top: 22px;
+ }
+
+ #burger{
+ 	border-radius: 10px;
+ }
+
+#greeting{
+	margin-top: 100px;
+	vertical-align: bottom;
+}
 
  /*.checkbox-inline{
  	padding-left: 20px;
