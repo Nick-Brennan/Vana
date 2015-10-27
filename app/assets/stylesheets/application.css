@@ -13,7 +13,7 @@
  *= require_tree .
  *= require_self
  */
-#title{
+.title{
 	font-size: 4.5em;
 	margin-left: 50px;
 }
@@ -46,6 +46,16 @@
 
  .nav{
  	background-color: rgba(151, 144, 144, 0.54);
+ }
+
+ #burger{
+ 	height:30px;
+ 	vertical-align: bottom;
+ 	margin-top: 70px;
+ }
+
+ #link_to_strava{
+ 	margin-top: 18%;
  }
 
 

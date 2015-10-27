@@ -1,11 +1,17 @@
 
 	<div class="row nav">
 		<div class="col-sm-10">
-			<h1 id="title">ÖVA</h1>
+			<h1 class="title">ÖVA</h1>
 			<small class="pull-right">Welcome, <%=@user['firstname']%></small> 
 		</div>
-		<div class="col-sm-2">
-			<%=image_tag(@user['profile_img'], id: 'profile_pic')%>
+		<div class="col-sm-1">
+			<%=image_tag(@user['profile_img'], id: 'profile_pic')%>&nbsp
+		</div>
+		<div class="navbar-header col-sm-1">
+		    <a class="navbar-brand" href="#">
+			    <img alt="menu" src="menu-3-256.png" id="burger" class="pull-right">
+		    </a>
+    	</div>
 		</div>
 	</div>
 
