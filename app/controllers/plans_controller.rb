@@ -11,6 +11,11 @@ class PlansController < ApplicationController
     puts "Here's the plan: " + @plan.to_s
   end
 
+  def index
+    @user = current_user
+    @plans = @user.plans
+  end
+
   private
   def plan_params
   	params.require(:plan).permit(:user_id, :distance, :monmap, :monpace, :monurl, :tuemap, :tuepace, :tueurl, :wedmap, :wedpace, :wedurl, :thumap, :thupace, :tueurl, :frimap, :fripace, :friurl, :satmap, :satpace, :saturl, :sunmap, :sunpace, :sunurl)
