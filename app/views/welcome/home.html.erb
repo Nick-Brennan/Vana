@@ -95,7 +95,7 @@
             </div>
             <hr>
             <p></p>
-            <p>Average daily mileage: <span ng-if="plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday > 0">{{plan.miles / (plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday) | number:2}}</span></p>
+            <p>Average daily mileage: <span ng-cloak ng-if="plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday > 0">{{plan.miles / (plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday) | number:2}}</span></p>
     
             <a ng-click="calcTotal()" class="btn btn-default btn-sm">Get Plan</a><br><br>
 
@@ -113,22 +113,22 @@
             </tr>
         </theader>
         <tr>
-            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank" id="monURL">{{plan.monData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank" id="tueURL">{{plan.tuesData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank" id="wedURL">{{plan.wedData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank" id="thuURL">{{plan.thursData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank" id="friURL">{{plan.friData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank" id="satURL">{{plan.satData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank" id="sunURL">{{plan.sunData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.monUrl}}' target="_blank" id="monURL">{{plan.monData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.tuesUrl}}' target="_blank" id="tueURL">{{plan.tuesData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.wedUrl}}' target="_blank" id="wedURL">{{plan.wedData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.thursUrl}}' target="_blank" id="thuURL">{{plan.thursData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.friUrl}}' target="_blank" id="friURL">{{plan.friData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.satUrl}}' target="_blank" id="satURL">{{plan.satData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-cloak ng-href='{{plan.sunUrl}}' target="_blank" id="sunURL">{{plan.sunData | number:2}}</a></td>
         </tr>
         <tr>                 
-            <td><a ng-href='{{plan.monUrl}}' target="_blank"><img ng-src='{{plan.monday && (plan.monMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'" id="monMap"></a></td>
-            <td><a ng-href='{{plan.tuesUrl}}' target="_blank"><img ng-src='{{plan.tuesday && (plan.tuesMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'" id="tueMap"></a></td>
-            <td><a ng-href='{{plan.wedUrl}}' target="_blank"><img ng-src="{{plan.wednesday && (plan.wedsMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="wedMap"></a></td>
-            <td><a ng-href='{{plan.thursUrl}}' target="_blank"><img ng-src="{{plan.thursday && (plan.thursMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="thuMap"></a></td>
-            <td><a ng-href='{{plan.friUrl}}' target="_blank"><img ng-src="{{plan.friday && (plan.friMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="friMap"></a></td>
-            <td><a ng-href='{{plan.satUrl}}' target="_blank"><img ng-src="{{plan.saturday && (plan.satMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="satMap"></a></td>
-            <td><a ng-href='{{plan.sunUrl}}' target="_blank"><img ng-src="{{plan.sunday && (plan.sunMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="sunMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.monUrl}}' target="_blank"><img ng-cloak ng-src='{{plan.monday && (plan.monMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'" id="monMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.tuesUrl}}' target="_blank"><img ng-cloak ng-src='{{plan.tuesday && (plan.tuesMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'" id="tueMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.wedUrl}}' target="_blank"><img ng-cloak ng-src="{{plan.wednesday && (plan.wedsMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="wedMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.thursUrl}}' target="_blank"><img ng-cloak ng-src="{{plan.thursday && (plan.thursMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="thuMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.friUrl}}' target="_blank"><img ng-cloak ng-src="{{plan.friday && (plan.friMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="friMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.satUrl}}' target="_blank"><img ng-cloak ng-src="{{plan.saturday && (plan.satMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="satMap"></a></td>
+            <td><a ng-cloak ng-href='{{plan.sunUrl}}' target="_blank"><img ng-cloak ng-src="{{plan.sunday && (plan.sunMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="sunMap"></a></td>
         </tr>
         <tr>
             <td></td>
