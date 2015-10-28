@@ -17,30 +17,32 @@
                 </button>
                 <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" id="indexDrop">
                     <li><a href="">update best efforts</a></li>
-                    <%form_for @plan do |f|%>
-                    <% f.hidden_field :distance%>
-                    <% f.hidden_field :monMap%>
-                    <% f.hidden_field :monPace%>
-                    <% f.hidden_field :monUrl%>
-                    <% f.hidden_field :tueMap%>
-                    <% f.hidden_field :tuePace%>
-                    <% f.hidden_field :tueUrl%>
-                    <% f.hidden_field :wedMap%>
-                    <% f.hidden_field :wedPace%>
-                    <% f.hidden_field :wedUrl%>
-                    <% f.hidden_field :thuMap%>
-                    <% f.hidden_field :thuPace%>
-                    <% f.hidden_field :thuUrl%>
-                    <% f.hidden_field :friMap%>
-                    <% f.hidden_field :friPace%>
-                    <% f.hidden_field :friUrl%>
-                    <% f.hidden_field :satMap%>
-                    <% f.hidden_field :satPace%>
-                    <% f.hidden_field :satUrl%>
-                    <% f.hidden_field :sunMap%>
-                    <% f.hidden_field :sunPace%>
-                    <% f.hidden_field :sunUrl%>
-                    <li><a href="javascript:{}" onclick="document.getElementById('new_plan').submit();">save plan</a></li>
+                    <%=form_for @plan do |f|%>
+                    <%= f.hidden_field :user_id, value: @user.id %>
+                    <%= f.hidden_field :distance%>
+                    <%= f.hidden_field :monmap%>
+                    <%= f.hidden_field :monpace%>
+                    <%= f.hidden_field :monurl%>
+                    <%= f.hidden_field :tuemap%>
+                    <%= f.hidden_field :tuepace%>
+                    <%= f.hidden_field :tueurl%>
+                    <%= f.hidden_field :wedmap%>
+                    <%= f.hidden_field :wedpace%>
+                    <%= f.hidden_field :wedurl%>
+                    <%= f.hidden_field :thumap%>
+                    <%= f.hidden_field :thupace%>
+                    <%= f.hidden_field :thuurl%>
+                    <%= f.hidden_field :frimap%>
+                    <%= f.hidden_field :fripace%>
+                    <%= f.hidden_field :friurl%>
+                    <%= f.hidden_field :satmap%>
+                    <%= f.hidden_field :satpace%>
+                    <%= f.hidden_field :saturl%>
+                    <%= f.hidden_field :sunmap%>
+                    <%= f.hidden_field :sunpace%>
+                    <%= f.hidden_field :sunurl%>
+                    <%end%>
+                    <li><a href="javascript:{}" onclick="getVals()">save plan</a></li>                   
                     <li><a href="">view plans</a></li>
                        <li><%= button_to "Logout", logout_path, method: "get", class: "btn btn-danger btn-xs" %></li>
                 </ul>
@@ -55,7 +57,7 @@
 	<br>
     <div ng-controller="indexCtrl">
         <label>Weekly Mileage</label>
-        <input ng-model='plan.miles' type="number"><br><br>
+        <input ng-model='plan.miles' type="number" id="miles"><br><br>
         <hr>
         <div class="row">
             <div class="col-md-2"></div>
@@ -111,22 +113,22 @@
             </tr>
         </theader>
         <tr>
-            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank">{{plan.monData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank">{{plan.tuesData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank">{{plan.wedData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank">{{plan.thursData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank">{{plan.friData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank">{{plan.satData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank">{{plan.sunData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank" id="monURL">{{plan.monData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank" id="tueURL">{{plan.tuesData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank" id="wedURL">{{plan.wedData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank" id="thuURL">{{plan.thursData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank" id="friURL">{{plan.friData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank" id="satURL">{{plan.satData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank" id="sunURL">{{plan.sunData | number:2}}</a></td>
         </tr>
         <tr>                 
-            <td><a ng-href='{{plan.monUrl}}' target="_blank"><img ng-src='{{plan.monday && (plan.monMap || "runDay.png") || "chillDay.jpg"}}' class="day"  onerror="this.src='runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{plan.tuesUrl}}' target="_blank"><img ng-src='{{plan.tuesday && (plan.tuesMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{plan.wedUrl}}' target="_blank"><img ng-src="{{plan.wednesday && (plan.wedsMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{plan.thursUrl}}' target="_blank"><img ng-src="{{plan.thursday && (plan.thursMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{plan.friUrl}}' target="_blank"><img ng-src="{{plan.friday && (plan.friMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{plan.satUrl}}' target="_blank"><img ng-src="{{plan.saturday && (plan.satMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{plan.sunUrl}}' target="_blank"><img ng-src="{{plan.sunday && (plan.sunMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{plan.monUrl}}' target="_blank"><img ng-src='{{plan.monday && (plan.monMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'" id="monMap"></a></td>
+            <td><a ng-href='{{plan.tuesUrl}}' target="_blank"><img ng-src='{{plan.tuesday && (plan.tuesMap || "runDay.png") || "chillDay.jpg"}}' class="day" onerror="this.src='runningSplash.jpg'" id="tueMap"></a></td>
+            <td><a ng-href='{{plan.wedUrl}}' target="_blank"><img ng-src="{{plan.wednesday && (plan.wedsMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="wedMap"></a></td>
+            <td><a ng-href='{{plan.thursUrl}}' target="_blank"><img ng-src="{{plan.thursday && (plan.thursMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="thuMap"></a></td>
+            <td><a ng-href='{{plan.friUrl}}' target="_blank"><img ng-src="{{plan.friday && (plan.friMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="friMap"></a></td>
+            <td><a ng-href='{{plan.satUrl}}' target="_blank"><img ng-src="{{plan.saturday && (plan.satMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="satMap"></a></td>
+            <td><a ng-href='{{plan.sunUrl}}' target="_blank"><img ng-src="{{plan.sunday && (plan.sunMap || 'runDay.png') || 'chillDay.jpg'}}" class="day" onerror="this.src='runningSplash.jpg'" id="sunMap"></a></td>
         </tr>
         <tr>
             <td></td>
@@ -143,6 +145,27 @@
 
 </div>
 <script>
+    function getVals(){
+        $('#plan_distance').val($('#miles').val());
+        $('#plan_monurl').val($('#monURL').attr('href'));
+        $('#plan_tueurl').val($('#tueURL').attr('href'));
+        $('#plan_wedurl').val($('#wedURL').attr('href'));
+        $('#plan_thuurl').val($('#thuURL').attr('href'));
+        $('#plan_friurl').val($('#friURL').attr('href'));
+        $('#plan_saturl').val($('#satURL').attr('href'));
+        $('#plan_sunurl').val($('#sunURL').attr('href'));
+
+        $('#plan_monmap').val($('#monMap').attr('src'));
+        $('#plan_tuemap').val($('#tueMap').attr('src'));
+        $('#plan_wedmap').val($('#wedMap').attr('src'));
+        $('#plan_thumap').val($('#thuMap').attr('src'));
+        $('#plan_frimap').val($('#friMap').attr('src'));
+        $('#plan_satmap').val($('#satMap').attr('src'));
+        $('#plan_sunmap').val($('#sunMap').attr('src'));
+
+        document.getElementById('new_plan').submit();
+    }
+
 	var app = angular.module('coachApp', ['ngRoute', 'ngResource']);
 
 app.controller('indexCtrl', ['$scope', '$sce', function($scope, $sce){

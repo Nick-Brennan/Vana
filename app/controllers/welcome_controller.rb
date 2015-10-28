@@ -12,6 +12,7 @@ class WelcomeController < ApplicationController
 
   def home
   	@user = current_user
+  	puts 'User id: ' + @user.id.to_s
   	@plan = Plan.new
   	client = Strava::Api::V3::Client.new(:access_token => @user.token)
   	@user_runs = client.list_athlete_activities(per_page: 200)

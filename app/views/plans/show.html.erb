@@ -1,0 +1,129 @@
+
+	<div class="row nav">
+		<div class="col-sm-8">
+			<a href="/home"><h1 class="title">ÖVA</h1></a>
+			
+		</div>
+        <div class="col-sm-2">
+            <small class="pull-right" id="greeting">Welcome, <%=@user['firstname']%></small> 
+        </div>    
+		<div class="col-sm-1">
+			<%=image_tag(@user['profile_img'], id: 'profile_pic')%>&nbsp
+		</div>
+		<div class="navbar-header col-sm-1">
+            <div class="dropdown">
+                <button class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <img alt="menu" src="../menu-3-256.png" id="burger" class="pull-right">
+                </button>
+                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" id="indexDrop">
+                    <li><a href="">update best efforts</a></li>
+                                  
+                    <li><a href="">view plans</a></li>
+                       <li><%= button_to "Logout", logout_path, method: "get", class: "btn btn-danger btn-xs" %></li>
+                </ul>
+            </div>  
+        </div>
+
+	    
+</div>
+	</div>
+
+<div class="container"ng-app="plansApp">
+	<br>
+    <div ng-controller="planCtrl">
+        <br><br>
+        <hr>
+        <div class="row">
+            <div class="col-md-2"></div>
+                <div id="boxes" class="col-md-8">
+                    <label class="checkbox-inline">
+                    <!--     <input type="checkbox" ng-model="plan.monday" value="1" class="checkbox">
+                        Mon&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.tuesday" value="1" class="checkbox">
+                        Tues&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.wednesday" value="1" class="checkbox">
+                        Wed&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.thursday" value="1" class="checkbox">
+                        Thurs&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.friday" value="1" class="checkbox">
+                        Fri&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.saturday" value="1" class="checkbox">
+                        Sat&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="plan.sunday" value="1" class="checkbox">
+                        Sun&nbsp&nbsp&nbsp&nbsp&nbsp
+                    </label> -->
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <hr>
+            <p></p>
+    
+            
+
+   
+    <table class="table">
+        <theader>
+            <tr id="days">
+                <th style="text-align: center;">Monday</th>
+                <th style="text-align: center;">Tuesday</th>
+                <th style="text-align: center;">Wednesday</th>
+                <th style="text-align: center;">Thursday</th>
+                <th style="text-align: center;">Friday</th>
+                <th style="text-align: center;">Saturday</th>
+                <th style="text-align: center;">Sunday</th>
+            </tr>
+        </theader>
+        <tr>
+            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank" id="monMap">{{plan.monData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank" id="tueMap">{{plan.tuesData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank" id="wedMap">{{plan.wedData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank" id="thuMap">{{plan.thursData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank" id="friMap">{{plan.friData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank" id="satMap">{{plan.satData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank" id="sunMap">{{plan.sunData | number:2}}</a></td>
+        </tr>
+        <tr>                 
+            <td><a ng-href='{{}}' target="_blank"><img ng-src='{{(plan.monmap || "public/runDay.png") || "public/chillDay.jpg"}}' class="day"  onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{}}' target="_blank"><img ng-src='{{(plan.tuemap || "public/runDay.png") || "public/chillDay.jpg"}}' class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.wedmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.thumap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.frimap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.satmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.sunmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <hr>
+    </div>
+
+</div>
+<script>
+var app = angular.module('plansApp', ['ngRoute', 'ngResource']);
+
+app.controller('planCtrl', ['$scope', '$sce', function($scope, $sce){
+	$scope.plan = <%=@plan.to_json.html_safe%>;
+	console.log('got the plan? - ')
+	console.log($scope.plan)
+}]);
+	
+</script>
