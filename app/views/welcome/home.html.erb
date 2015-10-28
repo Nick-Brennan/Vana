@@ -63,9 +63,9 @@
             <div class="col-md-2"></div>
                 <div id="boxes" class="col-md-8">
                     <label class="checkbox-inline">
-                        <input type="checkbox" ng-model="plan.monday" value="1" class="checkbox">
+                        <input type="checkbox" ng-model="plan.monday" value="1" class="checkbox checkbox-primary">
                         Mon&nbsp&nbsp&nbsp&nbsp&nbsp
-                    </label>
+                    </label>                 
                     <label class="checkbox-inline">
                         <input type="checkbox" ng-model="plan.tuesday" value="1" class="checkbox">
                         Tues&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -97,7 +97,7 @@
             <p></p>
             <p>Average daily mileage: <span ng-cloak ng-if="plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday > 0">{{plan.miles / (plan.monday + plan.tuesday + plan.wednesday + plan.thursday + plan.friday + plan.saturday + plan.sunday) | number:2}}</span></p>
     
-            <a ng-click="calcTotal()" class="btn btn-default btn-sm">Get Plan</a><br><br>
+            <a ng-click="calcTotal()" class="btn btn-default btn-sm btn-raised">Get Plan</a><br><br>
 
    
     <table class="table">
