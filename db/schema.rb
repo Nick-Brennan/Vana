@@ -11,10 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025181727) do
+ActiveRecord::Schema.define(version: 20151027204220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "plans", force: :cascade do |t|
+    t.float    "distance"
+    t.string   "monmap"
+    t.string   "monpace"
+    t.string   "monurl"
+    t.string   "tuemap"
+    t.string   "tuepace"
+    t.string   "tueurl"
+    t.string   "wedmap"
+    t.string   "wedpace"
+    t.string   "wedurl"
+    t.string   "thumap"
+    t.string   "thupace"
+    t.string   "thuurl"
+    t.string   "frimap"
+    t.string   "fripace"
+    t.string   "friurl"
+    t.string   "satmap"
+    t.string   "satpace"
+    t.string   "saturl"
+    t.string   "sunmap"
+    t.string   "sunpace"
+    t.string   "sunurl"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "token"
