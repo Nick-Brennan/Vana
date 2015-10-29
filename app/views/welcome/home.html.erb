@@ -44,7 +44,7 @@
                     <%end%>
                     <li><a href="javascript:{}" onclick="getVals()">save plan</a></li>                   
                     <li><a href="/plans">view plans</a></li>
-                       <li><%= button_to "Logout", logout_path, method: "get", class: "btn btn-danger btn-xs" %></li>
+                       <li><%= button_to "Logout", logout_path, method: "get", class: "btn btn-danger btn-xs pull-right" %></li>
                 </ul>
             </div>  
         </div>
@@ -240,78 +240,43 @@ app.controller('indexCtrl', ['$scope', '$sce', function($scope, $sce){
             $scope.plan.satRun = $scope.plan.satRuns[Math.floor(Math.random() * $scope.plan.satRuns.length)];
             if($scope.plan.satRun){
                 $scope.plan.satUrl = "http://www.strava.com/activities/" + $scope.plan.satRun.id;
-    			$scope.plan.satCoords = getCoordsFromPoly($scope.plan.satRun['map']['summary_polyline']);
-    			$scope.plan.satMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.satRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.satCoords[1]+ ","
-    				+ $scope.plan.satCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.satMap = generateRunMap($scope.plan.satRun);
             }
             $scope.plan.sunRuns = findRun($scope.plan.sunData);
             $scope.plan.sunRun = $scope.plan.sunRuns[Math.floor(Math.random() * $scope.plan.sunRuns.length)];
             if($scope.plan.sunRun){
                 $scope.plan.sunUrl = "http://www.strava.com/activities/" + $scope.plan.sunRun.id;
-    			$scope.plan.sunCoords = getCoordsFromPoly($scope.plan.sunRun['map']['summary_polyline']);
-    			$scope.plan.sunMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.sunRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.sunCoords[1]+ ","
-    				+ $scope.plan.sunCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.sunMap = generateRunMap($scope.plan.sunRun);
             }    
             $scope.plan.monRuns = findRun($scope.plan.monData);
             $scope.plan.monRun = $scope.plan.monRuns[Math.floor(Math.random() * $scope.plan.monRuns.length)];
             if($scope.plan.monRun){
                 $scope.plan.monUrl = "http://www.strava.com/activities/" + $scope.plan.monRun.id;
-    			$scope.plan.monCoords = getCoordsFromPoly($scope.plan.monRun['map']['summary_polyline']);
-    			$scope.plan.monMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.monRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.monCoords[1]+ ","
-    				+ $scope.plan.monCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.monMap = generateRunMap($scope.plan.monRun);
             }    
             $scope.plan.tuesRuns = findRun($scope.plan.tuesData);
             $scope.plan.tuesRun = $scope.plan.tuesRuns[Math.floor(Math.random() * $scope.plan.tuesRuns.length)];
             if($scope.plan.tuesRun){
                 $scope.plan.tuesUrl = "http://www.strava.com/activities/" + $scope.plan.tuesRun.id;
-    			$scope.plan.tuesCoords = getCoordsFromPoly($scope.plan.tuesRun['map']['summary_polyline']);
-    			$scope.plan.tuesMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.tuesRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.tuesCoords[1]+ ","
-    				+ $scope.plan.tuesCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.tuesMap = generateRunMap($scope.plan.tuesRun);
             }
             $scope.plan.wedRuns = findRun($scope.plan.wedData);
             $scope.plan.wedRun = $scope.plan.wedRuns[Math.floor(Math.random() * $scope.plan.wedRuns.length)];
             if($scope.plan.wedRun){
                 $scope.plan.wedUrl = "http://www.strava.com/activities/" + $scope.plan.wedRun.id;
-    			$scope.plan.wedCoords = getCoordsFromPoly($scope.plan.wedRun['map']['summary_polyline']);
-    			$scope.plan.wedsMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.wedRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.wedCoords[1]+ ","
-    				+ $scope.plan.wedCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.wedsMap = generateRunMap($scope.plan.wedRun);
             }
             $scope.plan.thursRuns = findRun($scope.plan.thursData);
             $scope.plan.thursRun = $scope.plan.thursRuns[Math.floor(Math.random() * $scope.plan.thursRuns.length)];
             if($scope.plan.thursRun){
                 $scope.plan.thursUrl = "http://www.strava.com/activities/" + $scope.plan.thursRun.id;
-    			$scope.plan.thursCoords = getCoordsFromPoly($scope.plan.thursRun['map']['summary_polyline']);
-    			$scope.plan.thursMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.thursRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.thursCoords[1]+ ","
-    				+ $scope.plan.thursCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.thursMap = generateRunMap($scope.plan.thursRun);
             }
             $scope.plan.friRuns = findRun($scope.plan.friData);
             $scope.plan.friRun = $scope.plan.friRuns[Math.floor(Math.random() * $scope.plan.friRuns.length)];
             if($scope.plan.friRun){
                 $scope.plan.friUrl = "http://www.strava.com/activities/" + $scope.plan.friRun.id;
-    			$scope.plan.friCoords = getCoordsFromPoly($scope.plan.friRun['map']['summary_polyline']);
-    			$scope.plan.friMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-    				+ encodeURI($scope.plan.friRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-    				+ $scope.plan.friCoords[1]+ ","
-    				+ $scope.plan.friCoords[0]
-    				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    			$scope.plan.friMap = generateRunMap($scope.plan.friRun);
             }           
         }else if(($scope.plan.saturday || $scope.plan.sunday) && ($scope.plan.days > 3)){
             weekendMiles = $scope.plan.miles * .30;
@@ -327,79 +292,44 @@ app.controller('indexCtrl', ['$scope', '$sce', function($scope, $sce){
             $scope.plan.satRuns = findRun($scope.plan.satData);
             $scope.plan.satRun = $scope.plan.satRuns[Math.floor(Math.random() * $scope.plan.satRuns.length)];
             if($scope.plan.satRun){
-            $scope.plan.satUrl = "http://www.strava.com/activities/" + $scope.plan.satRun.id;
-			$scope.plan.satCoords = getCoordsFromPoly($scope.plan.satRun['map']['summary_polyline']);
-			$scope.plan.satMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.satRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.satCoords[1]+ ","
-				+ $scope.plan.satCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.satUrl = "http://www.strava.com/activities/" + $scope.plan.satRun.id;
+    			$scope.plan.satMap = generateRunMap($scope.plan.satRun);
             }
             $scope.plan.sunRuns = findRun($scope.plan.sunData);
             $scope.plan.sunRun = $scope.plan.sunRuns[Math.floor(Math.random() * $scope.plan.sunRuns.length)];
             if($scope.plan.sunRun){
-            $scope.plan.sunUrl = "http://www.strava.com/activities/" + $scope.plan.sunRun.id;
-			$scope.plan.sunCoords = getCoordsFromPoly($scope.plan.sunRun['map']['summary_polyline']);
-			$scope.plan.sunMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.sunRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.sunCoords[1]+ ","
-				+ $scope.plan.sunCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.sunUrl = "http://www.strava.com/activities/" + $scope.plan.sunRun.id;
+    			$scope.plan.sunMap = generateRunMap($scope.plan.sunRun);
             }
             $scope.plan.monRuns = findRun($scope.plan.monData);
             $scope.plan.monRun = $scope.plan.monRuns[Math.floor(Math.random() * $scope.plan.monRuns.length)];
             if($scope.plan.monRun){
-            $scope.plan.monUrl = "http://www.strava.com/activities/" + $scope.plan.monRun.id;
-			$scope.plan.monCoords = getCoordsFromPoly($scope.plan.monRun['map']['summary_polyline']);
-			$scope.plan.monMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.monRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.monCoords[1]+ ","
-				+ $scope.plan.monCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.monUrl = "http://www.strava.com/activities/" + $scope.plan.monRun.id;
+    			$scope.plan.monMap = generateRunMap($scope.plan.monRun);
             }
             $scope.plan.tuesRuns = findRun($scope.plan.tuesData);
             $scope.plan.tuesRun = $scope.plan.tuesRuns[Math.floor(Math.random() * $scope.plan.tuesRuns.length)];
             if($scope.plan.tuesRun){
-            $scope.plan.tuesUrl = "http://www.strava.com/activities/" + $scope.plan.tuesRun.id;
-			$scope.plan.tuesCoords = getCoordsFromPoly($scope.plan.tuesRun['map']['summary_polyline']);
-			$scope.plan.tuesMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.tuesRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.tuesCoords[1]+ ","
-				+ $scope.plan.tuesCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.tuesUrl = "http://www.strava.com/activities/" + $scope.plan.tuesRun.id;
+    			$scope.plan.tuesMap = generateRunMap($scope.plan.tuesRun);
             }
             $scope.plan.wedRuns = findRun($scope.plan.wedData);
             $scope.plan.wedRun = $scope.plan.wedRuns[Math.floor(Math.random() * $scope.plan.wedRuns.length)];
             if($scope.plan.wedRun){
-            $scope.plan.wedUrl = "http://www.strava.com/activities/" + $scope.plan.wedRun.id;
-			$scope.plan.wedCoords = getCoordsFromPoly($scope.plan.wedRun['map']['summary_polyline']);
-			$scope.plan.wedsMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.wedRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.wedCoords[1]+ ","
-				+ $scope.plan.wedCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.wedUrl = "http://www.strava.com/activities/" + $scope.plan.wedRun.id;
+    			$scope.plan.wedsMap = generateRunMap($scope.plan.wedRun);
             }
             $scope.plan.thursRuns = findRun($scope.plan.thursData);
             $scope.plan.thursRun = $scope.plan.thursRuns[Math.floor(Math.random() * $scope.plan.thursRuns.length)];
             if($scope.plan.thursRun){
-            $scope.plan.thursUrl = "http://www.strava.com/activities/" + $scope.plan.thursRun.id;
-			$scope.plan.thursCoords = getCoordsFromPoly($scope.plan.thursRun['map']['summary_polyline']);
-			$scope.plan.thursMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.thursRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.thursCoords[1]+ ","
-				+ $scope.plan.thursCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.thursUrl = "http://www.strava.com/activities/" + $scope.plan.thursRun.id;
+    			$scope.plan.thursMap = genereateRunMap($scope.plan.thursRun);
             }
             $scope.plan.friRuns = findRun($scope.plan.friData);
             $scope.plan.friRun = $scope.plan.friRuns[Math.floor(Math.random() * $scope.plan.friRuns.length)];
             if($scope.plan.friRun){
-            $scope.plan.friUrl = "http://www.strava.com/activities/" + $scope.plan.friRun.id;
-			$scope.plan.friCoords = getCoordsFromPoly($scope.plan.friRun['map']['summary_polyline']);
-			$scope.plan.friMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.friRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.friCoords[1]+ ","
-				+ $scope.plan.friCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.friUrl = "http://www.strava.com/activities/" + $scope.plan.friRun.id;
+    			$scope.plan.friMap = generateRunMap($scope.plan.friRun);
             }
         }else{
             $scope.plan.total =  $scope.plan.miles / $scope.plan.days;
@@ -414,101 +344,73 @@ app.controller('indexCtrl', ['$scope', '$sce', function($scope, $sce){
             $scope.plan.satRuns = findRun($scope.plan.satData);
             $scope.plan.satRun = $scope.plan.satRuns[Math.floor(Math.random() * $scope.plan.satRuns.length)];
             if($scope.plan.satRun){
-            $scope.plan.satUrl = "http://www.strava.com/activities/" + $scope.plan.satRun.id;
-			$scope.plan.satCoords = getCoordsFromPoly($scope.plan.satRun['map']['summary_polyline']);
-			$scope.plan.satMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.satRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.satCoords[1]+ ","
-				+ $scope.plan.satCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.satUrl = "http://www.strava.com/activities/" + $scope.plan.satRun.id;
+    			$scope.plan.satMap = generateRunMap($scope.plan.satRun);
             }
             $scope.plan.sunRuns = findRun($scope.plan.sunData);
             $scope.plan.sunRun = $scope.plan.sunRuns[Math.floor(Math.random() * $scope.plan.sunRuns.length)];
             if($scope.plan.sunRun){
-            $scope.plan.sunUrl = "http://www.strava.com/activities/" + $scope.plan.sunRun.id;
-			$scope.plan.sunCoords = getCoordsFromPoly($scope.plan.sunRun['map']['summary_polyline']);
-			$scope.plan.sunMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.sunRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.sunCoords[1]+ ","
-				+ $scope.plan.sunCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.sunUrl = "http://www.strava.com/activities/" + $scope.plan.sunRun.id;
+    			$scope.plan.sunMap = generateRunMap($scope.plan.sunRun);
             }
             $scope.plan.monRuns = findRun($scope.plan.monData);
             $scope.plan.monRun = $scope.plan.monRuns[Math.floor(Math.random() * $scope.plan.monRuns.length)];
             if($scope.plan.monRun){
-            $scope.plan.monUrl = "http://www.strava.com/activities/" + $scope.plan.monRun.id;
-			$scope.plan.monCoords = getCoordsFromPoly($scope.plan.monRun['map']['summary_polyline']);
-			$scope.plan.monMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.monRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.monCoords[1]+ ","
-				+ $scope.plan.monCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.monUrl = "http://www.strava.com/activities/" + $scope.plan.monRun.id;
+                $scope.plan.monMap = generateRunMap($scope.plan.monRun);
             }
             $scope.plan.tuesRuns = findRun($scope.plan.tuesData);
             $scope.plan.tuesRun = $scope.plan.tuesRuns[Math.floor(Math.random() * $scope.plan.tuesRuns.length)];
             if($scope.plan.tuesRun){
-            $scope.plan.tuesUrl = "http://www.strava.com/activities/" + $scope.plan.tuesRun.id;
-			$scope.plan.tuesCoords = getCoordsFromPoly($scope.plan.tuesRun['map']['summary_polyline']);
-			$scope.plan.tuesMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.tuesRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.tuesCoords[1]+ ","
-				+ $scope.plan.tuesCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.tuesUrl = "http://www.strava.com/activities/" + $scope.plan.tuesRun.id;
+    			$scope.plan.tuesMap = generateRunMap($scope.plan.tuesRun);
             }
             $scope.plan.wedRuns = findRun($scope.plan.wedData);
             $scope.plan.wedRun = $scope.plan.wedRuns[Math.floor(Math.random() * $scope.plan.wedRuns.length)];
             if($scope.plan.wedRun){
-            $scope.plan.wedUrl = "http://www.strava.com/activities/" + $scope.plan.wedRun.id;
-			$scope.plan.wedCoords = getCoordsFromPoly($scope.plan.wedRun['map']['summary_polyline']);
-			$scope.plan.wedsMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.wedRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.wedCoords[1]+ ","
-				+ $scope.plan.wedCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.wedUrl = "http://www.strava.com/activities/" + $scope.plan.wedRun.id;
+    			$scope.plan.wedsMap = generateRunMap($scope.plan.wedRun);
             }
             $scope.plan.thursRuns = findRun($scope.plan.thursData);
             $scope.plan.thursRun = $scope.plan.thursRuns[Math.floor(Math.random() * $scope.plan.thursRuns.length)]
             if($scope.plan.thursRun){
-            $scope.plan.thursUrl = "http://www.strava.com/activities/" + $scope.plan.thursRun.id;
-			$scope.plan.thursCoords = getCoordsFromPoly($scope.plan.thursRun['map']['summary_polyline']);
-			$scope.plan.thursMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.thursRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.thursCoords[1]+ ","
-				+ $scope.plan.thursCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.thursUrl = "http://www.strava.com/activities/" + $scope.plan.thursRun.id;
+    			$scope.plan.thursMap = genereateRunMap($scope.plan.thursRun);
             }
             $scope.plan.friRuns = findRun($scope.plan.friData);
             $scope.plan.friRun = $scope.plan.friRuns[Math.floor(Math.random() * $scope.plan.friRuns.length)];
             if($scope.plan.friRun){
-            $scope.plan.friUrl = "http://www.strava.com/activities/" + $scope.plan.friRun.id;
-			$scope.plan.friCoords = getCoordsFromPoly($scope.plan.friRun['map']['summary_polyline']);
-			$scope.plan.friMap = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
-				+ encodeURI($scope.plan.friRun['map']['summary_polyline']).replace('?', '%3F') + ")/"
-				+ $scope.plan.friCoords[1]+ ","
-				+ $scope.plan.friCoords[0]
-				+ ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+                $scope.plan.friUrl = "http://www.strava.com/activities/" + $scope.plan.friRun.id;
+                $scope.plan.friMap = generateRunMap($scope.plan.friRun);
             }
-        }
-        console.log($scope.plan)
-        
+        }      
     };
 }]);
+function generateRunMap(run){
+    coo = getCoordsFromPoly(run['map']['summary_polyline']);
+    map = "https://api.mapbox.com/v4/mapbox.streets/path-5+f44+f44(" 
+        + encodeURI(run['map']['summary_polyline']).replace('?', '%3F') + ")/"
+        + coo[1] + ","
+        + coo[0]
+        + ",12/200x200.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6IlhHVkZmaW8ifQ.hAMX5hSW-QnTeRCMAy9A8Q";
+    return map;
+}
 
+//takes a decoded polyline and returns coodinates approximating the center of the path traveled
 function getCoordsFromPoly(poly){
 	var coords=[]
 	var polyCoo = decodePolyline(poly);
 	if(polyCoo){
-		console.log('****Coordinates****');
-		console.log(polyCoo);
 		var startCoo = polyCoo[0];
-		console.log(startCoo);
 		var endCoo = polyCoo[Math.floor(polyCoo.length / 2)]
-		console.log(endCoo);
 		coords.push((startCoo[0] + endCoo[0])/2)
 		coords.push((startCoo[1] + endCoo[1])/2)
 		return coords;
 	}
 }
+//this function was taken from source code which can be found here: 
+//https://github.com/mapbox/polyline/blob/master/src/polyline.js
+//it decodes an encoed polyline and returns a 2d array of lat. long. pairs
 function decodePolyline(str, precision) {
     var index = 0,
         lat = 0,
@@ -521,12 +423,8 @@ function decodePolyline(str, precision) {
         longitude_change,
         factor = Math.pow(10, precision || 5);
 
-    // Coordinates have variable length when encoded, so just keep
-    // track of whether we've hit the end of the string. In each
-    // loop iteration, a single coordinate is decoded.
     while (index < str.length) {
 
-        // Reset shift, result, and byte
         byte = null;
         shift = 0;
         result = 0;

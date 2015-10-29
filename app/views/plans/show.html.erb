@@ -67,9 +67,8 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <hr>
-            <p></p>
-    
+            
+            <div class="col-md-2 col-md-offset-5"><h3 id="mileSign" ng-cloak><b>{{plan.distance}} miles</b></h3></div>
             
 
    
@@ -86,22 +85,22 @@
             </tr>
         </theader>
         <tr>
-            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank" id="monMap">{{plan.monData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank" id="tueMap">{{plan.tuesData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank" id="wedMap">{{plan.wedData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank" id="thuMap">{{plan.thursData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank" id="friMap">{{plan.friData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank" id="satMap">{{plan.satData | number:2}}</a></td>
-            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank" id="sunMap">{{plan.sunData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.monUrl}}' target="_blank" id="monMap" ng-cloak>{{plan.monData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.tuesUrl}}' target="_blank" id="tueMap" ng-cloak>{{plan.tuesData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.wedUrl}}' target="_blank" id="wedMap" ng-cloak>{{plan.wedData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.thursUrl}}' target="_blank" id="thuMap" ng-cloak>{{plan.thursData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.friUrl}}' target="_blank" id="friMap" ng-cloak>{{plan.friData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.satUrl}}' target="_blank" id="satMap" ng-cloak>{{plan.satData | number:2}}</a></td>
+            <td style="text-align: center;"><a ng-href='{{plan.sunUrl}}' target="_blank" id="sunMap" ng-cloak>{{plan.sunData | number:2}}</a></td>
         </tr>
         <tr>                 
-            <td><a ng-href='{{}}' target="_blank"><img ng-src='{{(plan.monmap || "public/runDay.png") || "public/chillDay.jpg"}}' class="day"  onerror="this.src='../runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{}}' target="_blank"><img ng-src='{{(plan.tuemap || "public/runDay.png") || "public/chillDay.jpg"}}' class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.wedmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.thumap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.frimap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.satmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
-            <td><a ng-href='{{}}' target="_blank"><img ng-src="{{(plan.sunmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'"></a></td>
+            <td><a ng-href='{{plan.monurl}}' target="_blank" ng-cloak><img ng-src='{{(plan.monmap || "public/runDay.png") || "public/chillDay.jpg"}}' class="day"  onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
+            <td><a ng-href='{{plan.tueurl}}' target="_blank" ng-cloak><img ng-src='{{(plan.tuemap || "public/runDay.png") || "public/chillDay.jpg"}}' class="day" onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
+            <td><a ng-href='{{plan.wedurl}}' target="_blank" ng-cloak><img ng-src="{{(plan.wedmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
+            <td><a ng-href='{{plan.thuurl}}' target="_blank" ng-cloak><img ng-src="{{(plan.thumap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
+            <td><a ng-href='{{plan.friurl}}' target="_blank" ng-cloak><img ng-src="{{(plan.frimap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
+            <td><a ng-href='{{plan.saturl}}' target="_blank" ng-cloak><img ng-src="{{(plan.satmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
+            <td><a ng-href='{{plan.sunurl}}' target="_blank" ng-cloak><img ng-src="{{(plan.sunmap || 'public/runDay.png') || 'public/chillDay.jpg'}}" class="day" onerror="this.src='../runningSplash.jpg'" ng-cloak></a></td>
         </tr>
         <tr>
             <td></td>

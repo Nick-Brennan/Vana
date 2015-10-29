@@ -14,7 +14,7 @@
  *= require bootstrap
  *= require_self
  */
- 
+
 
 .title{
 	color: black;
@@ -68,6 +68,7 @@
 
  .btn-danger{
  	margin: 10px;
+ 	margin-left: 30px;
  }
 
  #indexDrop{
@@ -75,7 +76,7 @@
  }
 
  #burger{
- 	border-radius: 10px;
+ 	border-radius: 20px;
  }
 
 #greeting{
@@ -83,6 +84,10 @@
 	vertical-align: bottom;
 }
 
+#mileSign{
+	text-align: center;
+	vertical-align: top;
+}
 
 
  /*.checkbox-inline{
