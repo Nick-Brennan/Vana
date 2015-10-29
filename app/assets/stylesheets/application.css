@@ -21,6 +21,8 @@
 	font-size: 4.5em;
 	margin-top: 45px;
 	margin-left: 50px;
+	cursor: pointer;
+	display: inline-block;
 }
 
  img{
@@ -72,7 +74,7 @@
  }
 
  #indexDrop{
- 	margin-top: 22px;
+ 	margin-top: 18px;
  }
 
  #burger{
