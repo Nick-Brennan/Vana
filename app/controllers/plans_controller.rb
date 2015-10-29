@@ -18,7 +18,7 @@ class PlansController < ApplicationController
 
   private
   def plan_params
-  	params.require(:plan).permit(:user_id, :distance, :monmap, :monpace, :monurl, :tuemap, :tuepace, :tueurl, :wedmap, :wedpace, :wedurl, :thumap, :thupace, :tueurl, :frimap, :fripace, :friurl, :satmap, :satpace, :saturl, :sunmap, :sunpace, :sunurl)
+  	params.require(:plan).permit(:user_id, :distance, :monmap, :monpace, :monurl, :tuemap, :tuepace, :tueurl, :wedmap, :wedpace, :wedurl, :thumap, :thupace, :thuurl, :frimap, :fripace, :friurl, :satmap, :satpace, :saturl, :sunmap, :sunpace, :sunurl)
   end
 
 
