@@ -11,8 +11,8 @@
 	</div>
 	<div class="navbar-header col-sm-1">
         <div class="dropdown">
-            <button class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <img alt="menu" src="../menu-3-256.png" id="burger" class="pull-right">
+            <button class="dropdown-toggle burger" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <img alt="menu" src="../menu-3-256.png" id="sando" class="pull-right">
             </button>
             <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1" id="indexDrop">
                 <li><a href="">update best efforts</a></li>
@@ -24,11 +24,11 @@
     </div>
 
 	    
-</div>
-<ul>
+</div class="list-group">
+<ul id="planList">
 <%@plans.each do |plan|%>
 <% link = "/plans/" + plan.id.to_s%>
-<li><a href=<%=link%>><h4><%=plan.distance%> <small><%=plan.created_at%></small></h4></a></li>
+<li class="list-group-item"><a href=<%=link%>><h4><%=plan.distance%> Miles <small> - <%=plan.created_at%></small></h4></a></li>
 <%end%>
 </ul>
 </div>
