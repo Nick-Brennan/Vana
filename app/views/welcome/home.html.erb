@@ -323,7 +323,7 @@ app.controller('indexCtrl', ['$scope', '$sce', function($scope, $sce){
             $scope.plan.thursRun = $scope.plan.thursRuns[Math.floor(Math.random() * $scope.plan.thursRuns.length)];
             if($scope.plan.thursRun){
                 $scope.plan.thursUrl = "http://www.strava.com/activities/" + $scope.plan.thursRun.id;
-    			$scope.plan.thursMap = genereateRunMap($scope.plan.thursRun);
+    			$scope.plan.thursMap = generateRunMap($scope.plan.thursRun);
             }
             $scope.plan.friRuns = findRun($scope.plan.friData);
             $scope.plan.friRun = $scope.plan.friRuns[Math.floor(Math.random() * $scope.plan.friRuns.length)];
