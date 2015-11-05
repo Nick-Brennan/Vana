@@ -99,6 +99,9 @@
 li.list-group-item{
 	border:none;
 }
+#demobutton{
+	margin-top: 20em;
+}
 
  /*.checkbox-inline{
  	padding-left: 20px;
