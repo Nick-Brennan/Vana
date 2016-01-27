@@ -6,4 +6,4 @@
 * bundle install
 * populate your .env file with the appropriate keys / ids
 ***
-* ÖVA is a Rails app with a bit of Angular.js in the views. Auth and the bulk of the data are sourced from Strava's API. The Mapbox API is used for... the maps.
+* ÖVA is a Rails app with an Angular.js Front-End. Auth and the bulk of the data are sourced from Strava's API. The Mapbox API is used for... the maps.
